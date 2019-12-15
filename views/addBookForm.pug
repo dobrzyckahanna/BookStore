@@ -1,0 +1,46 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset=UTF-8)
+    title Books
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Abril+Fatface|Proza+Libre:400,700&display=swap&subset=latin-ext", rel='stylesheet')
+    style
+      include ./style.css
+  body.text-dark
+
+    div.wrapper
+
+      div.wrapper-inner.bg-light
+
+        include ./dashboard.pug
+
+        include ./header.pug
+
+        div.content
+          hr
+          main
+            h2 Add book
+            form(method='POST', action='/api/books/add')
+              div.form-group
+                label Title:
+                input.form-control(name='title', type='text', placeholder='Enter book title')
+              div.form-group
+                label Author:
+                input.form-control(name='author', type='text', placeholder='Enter book author')
+              div.form-group
+                label Publiction year:
+                input.form-control(name='publishingYear', type='number', placeholder='Enter publication year')
+              div.form-group
+                label Category:
+                select(name='category').form-control
+                  each val in ['Thriller', 'Crime fiction', 'Romance', 'For kids', 'Biography', 'Fantasy', 'Handbooks', 'Poetry', 'Travel', 'Non-fiction']
+                    option(value=val)= val
+              div.form-group
+                label Description:
+                textarea.form-control(name='description', row='5' placeholder='Enter book description')
+              input.btn.btn-primary(type='submit', value='Add book')
+        hr
+
+        include ./footer.pug

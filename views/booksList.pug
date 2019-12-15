@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset=UTF-8)
+    title Books
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Abril+Fatface|Proza+Libre:400,700&display=swap&subset=latin-ext", rel='stylesheet')
+    style
+      include ./style.css
+  body.text-dark
+
+    div.wrapper
+
+      div.wrapper-inner.bg-light
+
+        include ./dashboard.pug
+
+        include ./header.pug
+
+        div.content
+          hr
+          main
+            h2 Books list
+            a.btn.btn-primary(href='/api/books/add') Add new book
+            div.books
+              each book, i in books
+                div.m-4.card
+                  div.card-header= book.author
+                  div.card-body
+                    h5.card-title= book.title
+                    a.btn.btn-primary(href='/api/books/'+ book._id) Read more
+        hr
+
+        include ./footer.pug

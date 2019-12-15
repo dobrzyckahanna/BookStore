@@ -32,7 +32,7 @@ html(lang='en')
                 span= book.category
               p Rating: 
                 span= averageStars
-              p.text-left.mt-4 Book description:
+              p.text-left.mt-4 Book description: 
               p.text-justify= book.description
             hr
             div.box
@@ -43,10 +43,10 @@ html(lang='en')
                   textarea.form-control(name='comment', row='5' placeholder='Enter book comment')
                 div.form-group
                   label Your rating (from 0 to 5):
-                  input.form-control(name='stars', type='number', min='0', max='5' placeholder='0')            
+                  input.form-control(name='stars', type='number', min='0', max='5' placeholder='0')
                 input.btn.btn-primary(type='submit', value='Add comment')
             hr
-            div.box
+            div
               h3 Readers opinions:
               each comment, i in book.reviewsList
                 div.card.mb-2.bg-secondary
