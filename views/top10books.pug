@@ -1,0 +1,12 @@
+section.content
+
+    div.top-ten.p-5
+        h2 Top 10 books
+        div.card-group
+            each bookItem in top10books
+                div.card.m-2
+                    div.card-header.h5 #{bookItem.book.title}
+                    div.card-body 
+                        p.card-text #{bookItem.book.author}
+                        p.card-text #{bookItem.avarageNote}
+                        a(href='/api/books/'+ book._id).btn.btn-info More...
