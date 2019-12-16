@@ -1,0 +1,18 @@
+extends userFormBase
+
+block title
+  | Login
+
+block dashboard-message
+  | Hey, logged-in users can do more!
+
+block user-form
+  form(method='POST', action='/api/auth')              
+    div.form-group
+      label Email:
+      input.form-control(name='email', type='email', placeholder='Enter your email', required)
+    div.form-group
+      label Password:
+      input.form-control(name='password', type='password', placeholder='Enter your password', required)
+    input.btn.btn-primary.my-4(type='submit', value='LOGIN')
+    p.text-left.m-4: | If you don't have an account #[a(href="/api/users") sign up]
