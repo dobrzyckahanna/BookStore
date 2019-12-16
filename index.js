@@ -7,6 +7,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const users = require('./routes/users');
 const books = require('./routes/books');
+const auth = require('./routes/auth');
 
 const app = express();
 
@@ -24,23 +25,24 @@ mongoose.connect(connectionString, {
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({
+  extended: true
+}));
 if (app.get('env') === 'development') {
   app.use(morgan('tiny'));
   basicDebug('Morgan enabled...')
 }
 app.use(express.static('public'));
+app.use('/api/auth', auth);
 app.use('/api/books', books);
-
-/*
 app.use('/api/users', users);
-*/
 
 app.get('/', (req, res) => {
-  res.render('main', {name: "Hard-Coded-Indexjs-Name", isEditor: true});
+  res.render('main', {
+    name: "Hard-Coded-Indexjs-Name",
+    isEditor: true
+  });
 });
-
-app.use('/api/users', users);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => basicDebug(`Listening on port ${port}...`));
